@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arithmetic Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="settings-screen" class="screen">
+      <div class="settings-card">
+        <h1 class="title">Arithmetic Game</h1>
+        <p class="description">
+          The Arithmetic Game is a fast-paced speed drill where you are given two minutes to solve
+          as many arithmetic problems as you can.
+        </p>
+        <p class="description">
+          If you have any questions, please contact
+          <a href="mailto:arithmetic@zetamac.com">arithmetic@zetamac.com</a>.
+        </p>
+
+        <div class="section">
+          <div class="section-title">Operations</div>
+
+          <div class="op-row" data-op="add">
+            <label class="op-check">
+              <input id="op-add" type="checkbox" />
+              Addition
+            </label>
+            <div class="op-details">
+              <span class="op-label">Range:</span>
+              <span class="op-range">
+                ( <input id="add-min-a" type="number" min="0" max="99" />
+                to <input id="add-max-a" type="number" min="0" max="99" /> )
+                +
+                ( <input id="add-min-b" type="number" min="0" max="99" />
+                to <input id="add-max-b" type="number" min="0" max="99" /> )
+              </span>
+            </div>
+          </div>
+
+          <div class="op-row" data-op="sub">
+            <label class="op-check">
+              <input id="op-sub" type="checkbox" />
+              Subtraction
+            </label>
+            <div class="op-details note">Addition problems in reverse.</div>
+          </div>
+
+          <div class="op-row" data-op="mul">
+            <label class="op-check">
+              <input id="op-mul" type="checkbox" />
+              Multiplication
+            </label>
+            <div class="op-details">
+              <span class="op-label">Range:</span>
+              <span class="op-range">
+                ( <input id="mul-min-a" type="number" min="1" max="99" />
+                to <input id="mul-max-a" type="number" min="1" max="99" /> )
+                &times;
+                ( <input id="mul-min-b" type="number" min="1" max="99" />
+                to <input id="mul-max-b" type="number" min="1" max="99" /> )
+              </span>
+            </div>
+          </div>
+
+          <div class="op-row" data-op="div">
+            <label class="op-check">
+              <input id="op-div" type="checkbox" />
+              Division
+            </label>
+            <div class="op-details note">Multiplication problems in reverse.</div>
+          </div>
+        </div>
+
+        <div class="section duration-row">
+          <label for="duration">Duration:</label>
+          <select id="duration">
+            <option value="30">30 seconds</option>
+            <option value="60">60 seconds</option>
+            <option value="90">90 seconds</option>
+            <option value="120">120 seconds</option>
+            <option value="300">300 seconds</option>
+          </select>
+        </div>
+
+        <div class="section delay-row">
+          <label for="reveal-delay">Reveal delay (seconds):</label>
+          <input
+            id="reveal-delay"
+            type="number"
+            step="0.1"
+            min="0"
+            max="5"
+          />
+        </div>
+
+        <div class="start-row">
+          <div id="op-warning" class="warning hidden">Select at least one operation.</div>
+          <button id="start-btn" class="primary">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen hidden">
+      <div class="hud">
+        <div class="hud-item">Score <span id="score">0</span></div>
+        <div class="hud-item">Time <span id="time">120</span></div>
+      </div>
+      <div id="history-panel" class="history-panel">
+        <div id="history-list" class="history-list"></div>
+      </div>
+      <div class="problem-panel">
+        <div class="equationLine">
+          <span id="problem-left" class="problem-left">1 + 1 =</span>
+          <span id="answer-slot" class="answer-slot">
+            <span id="answer-mirror" class="answer-mirror">&nbsp;</span>
+            <input
+              id="answer-input"
+              class="answer-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              aria-label="Answer"
+            />
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section id="end-screen" class="screen hidden">
+      <div class="end-card">
+        <h2 class="title">Time's up</h2>
+        <div class="final-row">Final score <span id="final-score">0</span></div>
+        <div class="final-row">Problems/min <span id="final-ppm">0.0</span></div>
+        <button id="restart-btn" class="primary">Restart</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
